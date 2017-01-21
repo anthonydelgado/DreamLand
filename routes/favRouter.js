@@ -30,10 +30,10 @@ const createNewFavorite = (req, res) => {
 
 //  ROUTES
 favRouter.route('/')
-	.post(createNewReview);
+	.post(createNewFavorite);
 
 favRouter.route('/reviewId/:id')
-	.delete(deleteReview);
+	.delete(deleteFavorite);
 
 
 module.exports = favRouter;
