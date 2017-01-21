@@ -3,7 +3,7 @@ const app = express();
 const Sequelize = require('sequelize');
 const db = require('../models');
 const path = require('path');
-//const router = require('../routes');
+const router = require('../routes');
 const bodyparser = require('body-parser');
 const session = require('express-session');
 
@@ -21,7 +21,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
-//app.use("/api", router)
+app.use("/api", router)
 
 
 app.get('/*', function(req, res) {
