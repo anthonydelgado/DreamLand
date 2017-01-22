@@ -6,7 +6,7 @@ const Home = withRouter(React.createClass({
   render() {
     return(
       <div>
-      	<h1>Dream Land</h1>
+      	<h1>Welcome to Dream Land</h1>
         <SearchBar />
       </div>
     )

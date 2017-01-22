@@ -16,6 +16,7 @@ const SearchBar = React.createClass({
 	makeQuery(){
 		if(this.state.zipcode){
 			browserHistory.push(`/search?zipcode=${this.state.zipcode}&age=${this.state.age}&status=${this.state.status}&attr=${this.state.attr}`)
+			this.props.refresh ? this.props.refresh() : null;
 		} else {
 			alert("No zipcode entered, please enter a zip")
 		}

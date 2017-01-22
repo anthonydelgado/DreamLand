@@ -8,6 +8,9 @@ import Home from './home.jsx';
 import SearchBar from './Search/SearchBar.jsx'
 import DisplayResults from './Search/DisplayResults.jsx'
 
+//Styling
+import './CSS/App.css';
+
 const App = (props) => {
   return (
     <div>
