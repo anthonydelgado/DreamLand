@@ -14,20 +14,18 @@ const Login = React.createClass({
 			  console.log(data)
 			})
 	},
-	updateUserName(e){
-		return this.setState({username: e.target.value})
-	},
-	updatePassword(e){
-		return this.setState({password: e.target.value})
+	handleChange(key, e){
+		this.setState({[key]: e.target.value})
 	},
  	render: function() {
 	    return (
 	      <div>
+	      
 		        <form>
 		        	Username:
-		        	<input onChange={this.updateUserName} type="text"/>
+		        	<input nChange={this.handleChange.bind(this, "username")} type="text"/>
 		        	Password:
-		        	<input onChange={this.updatePassword} type="text"/>
+		        	<input nChange={this.handleChange.bind(this, "password")} type="text"/>
 		        	<button onClick={this.submitLogIn}>Submit</button>
 		        </form>
 	      </div>
