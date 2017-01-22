@@ -4,10 +4,11 @@ import axios from 'axios';
 
 //Component
 import SearchBar from './SearchBar.jsx';
+import Map from '../Map/Map.jsx';
 
 const DisplayResults = React.createClass({
   getInitialState(){
-  	return{programs: null, reviews: null}
+  	return{programs: null, reviews: null, location: null}
   }, 
 
   componentDidMount(){
@@ -36,8 +37,8 @@ const DisplayResults = React.createClass({
         axios.get(`/review/${id}`)
           .then( (res) => reviews.concat(res.data) )
       })
-      console.log("this is res.data.programs===========>",res.data.programs)
-      this.setState({programs: res.data.programs, reviews: reviews})
+      console.log("this is res.data.programs===========>",res.data)
+      this.setState({programs: res.data.programs, reviews: reviews, location: res.data.postal_location})
     })
     .catch( (err) => {
       console.log(err);
@@ -51,6 +52,7 @@ const DisplayResults = React.createClass({
   render(){
     let programs = this.state.programs
     let reviews = this.state.reviews
+    console.log(this.props)
   	return (
   		<div>
   			<SearchBar refresh={this.refresh}/>
@@ -59,10 +61,13 @@ const DisplayResults = React.createClass({
             return (
               <div key={idx}>
                 <h1>{program.name}</h1>
-                {program.description}
+                {program.description.replace(/\<br\>|\<br\/\>/g," ")
+                //screw it!!!
+                }
                 <p>Distance: {program.distance} miles</p>
                 <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
                 <a href={program.website_url}>{program.website_url}</a>
+                <Map coords={program.offices[0].location} name={program.name} />
               </div>
             )
           })
