@@ -1,27 +1,30 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery');
-var Orgs = require('./org.jsx');
-var Home = require('./home.jsx');
-import {withRouter, Router, Route, Link, browserHistory} from 'react-router';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {withRouter, Router, Route, IndexRoute, Link, browserHistory} from 'react-router';
 
-var App = withRouter(React.createClass({
-  render: function() {
-    return(
-      <div>
-      <h1>Dream Land</h1>
-      <Home />
-        {this.props.children}
-      </div>
-    )
-  }
-}))
+//Components
+import Orgs from './orgs.jsx';
+import Home from './home.jsx';
+import SearchBar from './Search/SearchBar.jsx'
+import DisplayResults from './Search/DisplayResults.jsx'
+
+const App = (props) => {
+  return (
+    <div>
+      {props.children}
+    </div>
+  )
+}
+
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path='/' component={App}></Route>
-    <Route path='organizatons' component={Orgs}></Route>
-    <Route path='organizatons/:id' component={OneOrg}></Route>
+    <Route path='/' component={App}>
+    <IndexRoute component={Home} />
+      <Route path='organizatons' component={Orgs}></Route>
+      <Route path='/search' component={DisplayResults}></Route>
+    </Route>
   </Router>,
   document.getElementById('root')
 )
+      // <Route path='organizatons/:id' component={OneOrg}></Route>

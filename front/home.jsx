@@ -1,17 +1,16 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery');
-import {withRouter, Router, Route, Link, browserHistory} from 'react-router';
+import React from 'react';
+import {withRouter} from 'react-router';
+import SearchBar from './Search/SearchBar.jsx';
 
-var Home = withRouter(React.createClass({
-  render: function() {
+const Home = withRouter(React.createClass({
+  render() {
     return(
       <div>
-      <h1>Dream Land</h1>
-        
+      	<h1>Dream Land</h1>
+        <SearchBar />
       </div>
     )
   }
-}))
+}));
 
-module.exports = Home
+export default Home;
