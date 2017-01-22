@@ -7,9 +7,9 @@ import Orgs from './orgs.jsx';
 import Home from './home.jsx';
 import SearchBar from './Search/SearchBar.jsx'
 import DisplayResults from './Search/DisplayResults.jsx'
-
+import Registration from './register.jsx'
 //Styling
-import './CSS/App.css';
+// import './CSS/App.css';
 
 const App = (props) => {
   return (
@@ -26,6 +26,8 @@ ReactDOM.render(
     <IndexRoute component={Home} />
       <Route path='organizatons' component={Orgs}></Route>
       <Route path='/search' component={DisplayResults}></Route>
+      <Route path='/register' component={Registration}></Route>
+
     </Route>
   </Router>,
   document.getElementById('root')
