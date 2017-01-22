@@ -9,7 +9,7 @@ const Orgs = React.createClass({
   },
   componentDidMount: function() {
     $.ajax({
-      url: '',
+      url: 'https://c4q-dot-searchbertha-hrd.appspot.com/_ah/api/search/v1/zipcodes/10001/programs?api_key=b30f1b9f41161c0fb3b39cb49aff8104&serviceTag=food+pantry&cursor=0&limit=50',
       type: 'GET'
     })
     .done((data) => {

@@ -9,8 +9,8 @@ import SearchBar from './Search/SearchBar.jsx'
 import DisplayResults from './Search/DisplayResults.jsx'
 import Registration from './register.jsx'
 import Login from './login.jsx'
-//Styling
 
+//Styling
 import './CSS/App.css';
 
 const App = (props) => {
