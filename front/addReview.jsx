@@ -1,8 +1,8 @@
-var React = require('react');
-var $ = require('jquery');
-var RestaurantId = require('./singleRestaurant.jsx')
+import React from 'react';
+import $ from 'jquery';
+import RestaurantId from './singleRestaurant.jsx'
  
-var AddReview = React.createClass({ 
+const AddReview = React.createClass({ 
   getInitialState: function() {
     return ({
       rating:0,description:"",date:""
@@ -50,4 +50,4 @@ var AddReview = React.createClass({
   }
 })
 
-module.exports = AddReview;
+export default AddReview;

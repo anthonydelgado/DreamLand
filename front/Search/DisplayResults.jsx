@@ -2,6 +2,9 @@ import React from 'react';
 import {Link} from 'react-router'
 import axios from 'axios';
 
+//Search
+import SearchBar from './SearchBar.jsx';
+
 const DisplayResults = React.createClass({
   getInitialState(){
   	return{programs: null}
@@ -36,7 +39,7 @@ const DisplayResults = React.createClass({
     let programs = this.state.programs
   	return (
   		<div>
-  			<p>hello from DisplayResults</p>
+  			<SearchBar />
         {!programs ? null : 
           programs.map( (program, idx) => {
             return (
