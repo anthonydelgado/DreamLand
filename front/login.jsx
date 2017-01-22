@@ -5,14 +5,17 @@ const Login = React.createClass({
 	getInitialState(){
 		return {username: '', password: ""}
 	},
-	submitLogIn(){
+	submitLogIn(e){
+		e.preventDefault()
+		console.log("submitLogIn??????????")
 		$.ajax({
-			method: "POST",
-			url: '/login',  
+			method: "GET",
+			url: 'api/users/validate',  
 			data: this.state
 			}).done((data)=>{
 			  console.log(data)
 			})
+
 	},
 	handleChange(key, e){
 		this.setState({[key]: e.target.value})
@@ -23,9 +26,9 @@ const Login = React.createClass({
 	      
 		        <form>
 		        	Username:
-		        	<input nChange={this.handleChange.bind(this, "username")} type="text"/>
+		        	<input onChange={this.handleChange.bind(this, "username")} type="text"/>
 		        	Password:
-		        	<input nChange={this.handleChange.bind(this, "password")} type="text"/>
+		        	<input onChange={this.handleChange.bind(this, "password")} type="text"/>
 		        	<button onClick={this.submitLogIn}>Submit</button>
 		        </form>
 	      </div>
