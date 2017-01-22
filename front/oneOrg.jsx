@@ -1,8 +1,8 @@
-var React = require('react');
-var $ = require('jquery');
-var AddReview = require('./addReview.jsx');
+import React from 'react';
+import $ from 'jquery';
+import AddReview from './addReview.jsx';
 
-var OneOrg = React.createClass({
+const OneOrg = React.createClass({
   getInitialState: function() {
     return ({
       name: '', neighborhood:'', address: '', reviews:[]
@@ -47,4 +47,4 @@ var OneOrg = React.createClass({
   }
 })
 //<NewReview OneOrgId={OrgId}/>
-module.exports = SingleRestaurant
+export default OneOrg;
