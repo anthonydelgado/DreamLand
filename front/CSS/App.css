@@ -1,3 +1,14 @@
 div {
 	font-family: 'Oswald', sans-serif;
 }
+
+#welcome {
+	display: flex;
+	font-size: 88px;
+	justify-content: center;
+}
+
+#search {
+	display: flex;
+	justify-content: center;
+}

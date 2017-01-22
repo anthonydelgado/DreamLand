@@ -25,7 +25,7 @@ const SearchBar = React.createClass({
 	render(){
 		let imgStyle={width: 50, height: 50}
 		return(
-			<div>
+			<div id="search">
 				<input onChange={this.handleChange} type="text" name="zipcode" placeholder="Zip Code here..."></input> 
 				<input onChange={this.handleChange} type="checkbox" name="age" value="young+adult" /> Young Adult
 				<input onChange={this.handleChange} type="checkbox" name="status" value="undocumented" /> Undocumented

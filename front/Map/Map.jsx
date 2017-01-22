@@ -10,18 +10,6 @@ const Map = React.createClass({
     });
   },
 
-  onDragEnd(e) {
-    console.log('onDragEnd', e);
-  },
-
-  onCloseClick() {
-    console.log('onCloseClick');
-  },
-
-  onClick(e) {
-    console.log('onClick', e);
-  },
-
   render() {
     let coords = this.props.coords
     let name = this.props.name
