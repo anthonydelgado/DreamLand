@@ -8,6 +8,7 @@ import Home from './home.jsx';
 import SearchBar from './Search/SearchBar.jsx'
 import DisplayResults from './Search/DisplayResults.jsx'
 import Registration from './register.jsx'
+import Login from './login.jsx'
 
 //Styling
 import './CSS/App.css';
@@ -28,6 +29,7 @@ ReactDOM.render(
       <Route path='organizatons' component={Orgs}></Route>
       <Route path='/search' component={DisplayResults}></Route>
       <Route path='/register' component={Registration}></Route>
+      <Route path='/login' component={Login}></Route>
 
     </Route>
   </Router>,

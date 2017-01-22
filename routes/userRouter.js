@@ -60,6 +60,99 @@ const createNewUser = (req, res) => {
 // 	})
 // }
 
+//validates a user
+//user needs email + password
+
+const authenticateUser = (req, res) => {
+  console.log("authenticateUser!!", req.body)
+  console.log("authenticateUser!!", req.query);
+  const { username, password} = req.query
+
+  User.findOne({
+    where: {
+      username,
+      password
+    }
+  })
+  .then((user) => {
+  	console.log('user==========>',user)
+    if(user){
+      req.session.userID = user.id;
+      req.session.save();
+      res.send(req.session.userID);
+    } else {
+      res.sendStatus(403)
+    }
+  })
+  .catch((err) => {
+  	console.log('errr======>', err)
+    res.sendStatus(500)
+  })
+}
+//if the user already exist, it will be deredected
+const isAuthenticated = (req, res) => {
+  console.log(req.session)
+  if(req.session.userID){
+    User.findById(req.session.userID)
+    .then((data) => {
+      res.send(data)
+    })
+  }else {
+    res.send(false);
+  }
+}
+const logingin = (req, res) => {
+  req.session()
+  req.redirect('/')
+}
+
+
+//handles the initial log in.
+function userLogin(req,res){
+  var userInfo = req.body;
+  User.sync()
+  .then(() => {
+    return User.findOne({
+      where: {
+        email: userInfo.email,
+        password: userInfo.password
+      }
+    })
+  })
+  .then((user) => {
+    if(user) {
+      req.session.UserId = user.id;
+      req.session.save();
+      console.log('Updated session?', req.session);
+      res.send(user);
+    } else {
+      res.send('Incorrect password!');
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+};
+
+
+//one more route on enter of app ====> check if req.session.id exists
+//if it does find user by id and send back data
+//if it doesn't send back a falsey value
+
+
+// router.route('/')
+//   .post(userLogin)
+
+
+// router.route('/')
+//   .get(auth)
+userRouter.route('/validate')
+  .get(authenticateUser)
+userRouter.route('/validate/userid')
+  .get(isAuthenticated)
+
+
 
 //  ROUTES
 userRouter.route('/')
