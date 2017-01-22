@@ -62,7 +62,7 @@ const DisplayResults = React.createClass({
                 {program.description}
                 <p>Distance: {program.distance} miles</p>
                 <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
-                <Link to={program.website_url}><p>{program.website_url}</p></Link>
+                <a href={program.website_url}>{program.website_url}</a>
               </div>
             )
           })
