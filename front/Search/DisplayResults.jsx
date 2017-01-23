@@ -5,11 +5,12 @@ import axios from 'axios';
 //Component
 import SearchBar from './SearchBar.jsx';
 import Map from '../Map/Map.jsx';
+import DisplayReviews from '../Review/DisplayReviews.jsx';
 
 const DisplayResults = React.createClass({
   getInitialState(){
-  	return{programs: null, reviews: null, location: null}
-  },
+  	return{programs: null, provIds: null}
+  }, 
 
   componentDidMount(){
   let age = 'adult';
@@ -31,14 +32,16 @@ const DisplayResults = React.createClass({
   console.log(url + zipcode + attributes)
   axios.get(url + zipcode + attributes)
     .then( (res) => {
-      let reviews = [];
-      let idArr = res.data.programs.map( (program) => program.id);
-      idArr.forEach( (id) => {
-        axios.get(`/review/${id}`)
-          .then( (res) => reviews.concat(res.data) );
-      });
       console.log("this is res.data.programs===========>",res.data)
-      this.setState({programs: res.data.programs, reviews: reviews, location: res.data.postal_location});
+
+      let idArr = res.data.programs.map( (program) => program.id);
+
+      // idArr.forEach( (id) => {
+      //   axios.get(`/review/providerId/${id}`)
+      //     .then( (res) => {
+      //       reviews.concat(res.data)} );
+      // });
+      this.setState({programs: res.data.programs, provIds: idArr});
     })
     .catch( (err) => {
       console.log(err);
@@ -51,12 +54,12 @@ const DisplayResults = React.createClass({
 
   render(){
     let programs = this.state.programs
-    let reviews = this.state.reviews
-    console.log(this.props)
-  	return (
-  		<div>
-  			<SearchBar refresh={this.refresh}/>
-        {!programs ? <img src={require('../images/loading_icon.gif')}></img> :
+    let provIds = this.state.provIds
+    console.log("OUR STATE =====>", this.state)
+    return (
+      <div>
+        <SearchBar refresh={this.refresh}/>
+        {!programs ? <img src={require('../images/loading_icon.gif')}></img> : 
           programs.map( (program, idx) => {
             return (
               <div key={idx}>
@@ -88,21 +91,9 @@ const DisplayResults = React.createClass({
             )
           })
         }
-        {!reviews ? null :
-          reviews.map( (review, idx) => {
-            return (
-
-              <div key={idx}>
-
-                Rating: {"*".repeat(review.rating)}
-
-                <p>review.comment</p>
-
-              </div>
-
-            )
-          })
-        }
+        {!provIds ? null :
+          <DisplayReviews provIds={provIds}/>
+        }	
       </div>
   	)
   }

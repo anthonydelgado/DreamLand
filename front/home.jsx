@@ -3,6 +3,9 @@ import {withRouter} from 'react-router';
 import SearchBar from './Search/SearchBar.jsx';
 import NavBar from './nav/navigation'
 
+//import Calendar from './Calendar/Calendar.jsx'
+//<Calendar />
+
 const Home = withRouter(React.createClass({
   render() {
     return(

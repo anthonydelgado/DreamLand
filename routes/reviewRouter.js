@@ -6,6 +6,7 @@ const Provider = require('../models').Provider;
 
 // GET reviews by providerId
 const fetchReviewsByProviderId = (req, res) => {
+	console.log(req.params)
 	Provider.findOne({
 		where: {
 			providerId: req.params.id,
@@ -13,11 +14,12 @@ const fetchReviewsByProviderId = (req, res) => {
 		},
 	})
 	.then( (provider) => {
+		console.log("PROVIDER =======>", provider)
 		res.send(provider);
 	})
 	.catch( (err) => {
 		console.log(err);
-		re.sendStatus(500);
+		res.sendStatus(500);
 	});
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import $ from 'jquery';
-import RestaurantId from './singleRestaurant.jsx'
  
 const AddReview = React.createClass({ 
   getInitialState: function() {
