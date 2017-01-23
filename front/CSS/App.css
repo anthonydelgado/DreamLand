@@ -51,20 +51,21 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.8;
+  opacity: 0.4;
 }
 
 
 input {
   border: 1px solid;
   border-radius: 25px;
-  width: 15%;
+  width: 20%;
+  outline: none;
+  font-size: 25px;
 }
 
 ::-webkit-input-placeholder{
   color: black;
   font-size: 20px;
-  padding-right: 10%;
 }
 
 .input[type=text] {
@@ -74,11 +75,11 @@ input {
 }
 
 
-input[type=text]:focus {
+/*input[type=text]:focus {
     width: 50%;
     font-size: 50px;
     outline: none;
-}
+}*/
 
 #check {
   width: 10px;
@@ -86,6 +87,77 @@ input[type=text]:focus {
 }
 
 #radios {
-  color: white;
-  width: 14%;
+  color: red;
+  width: 20%;
+  margin-left: -3%;
 }
+
+#login {
+  width: 200px;
+  margin-top: 10%;
+  outline: none;
+}
+
+#loginForm {
+  color: red;
+}
+
+#subButton {
+  -webkit-border-radius: 26;
+  -moz-border-radius: 26;
+  border: 1px solid black;
+  border-radius: 22px;
+  text-shadow: 1px 1px 3px #b8a4b8;
+  font-family: Arial;
+  color: #ff0000;
+  font-size: 20px;
+  background: #ffffff;
+  padding: 7px 22px 2px 19px;
+  text-decoration: none;
+}
+
+#subButton:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+#signIn {
+  color: white;
+  margin-left: 10px;
+  text-decoration-style: none;
+  text-decoration: none;
+
+}
+
+a:link {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+}
+#signUp {
+  color: white;
+  margin-left: 5px;
+}
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
+#sign {
+  display: flex;
+  
+
+
+}
+

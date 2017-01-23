@@ -55,7 +55,9 @@ const DisplayResults = React.createClass({
     console.log(this.props)
   	return (
   		<div>
+      <center>
   			<SearchBar refresh={this.refresh}/>
+      </center>
         {!programs ? <img src={require('../images/loading_icon.gif')}></img> :
           programs.map( (program, idx) => {
             return (
@@ -65,7 +67,7 @@ const DisplayResults = React.createClass({
                       <Map coords={program.offices[0].location} name={program.name} />
                     </div>
                     <div className="two">
-                      <h1>{program.name}</h1>
+                      <h1 className="readMore"><span className="read-more-target">{program.name}</span></h1>
                       {program.description.replace(/\<br\>|\<br\/\>/g," ")
           //screw it!!!
                       }
@@ -76,7 +78,10 @@ const DisplayResults = React.createClass({
                       <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
 
                     </div>
-                    <div className="three"></div>
+                    <div className="three">
+                    
+                    
+                    </div>
 
 
 
