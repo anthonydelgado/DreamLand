@@ -9,7 +9,7 @@ import Map from '../Map/Map.jsx';
 const DisplayResults = React.createClass({
   getInitialState(){
   	return{programs: null, reviews: null, location: null}
-  }, 
+  },
 
   componentDidMount(){
   let age = 'adult';
@@ -56,21 +56,34 @@ const DisplayResults = React.createClass({
   	return (
   		<div>
   			<SearchBar refresh={this.refresh}/>
-        {!programs ? <img src={require('../images/loading_icon.gif')}></img> : 
+        {!programs ? <img src={require('../images/loading_icon.gif')}></img> :
           programs.map( (program, idx) => {
             return (
               <div key={idx}>
-                <h1>{program.name}</h1>
-                {program.description.replace(/\<br\>|\<br\/\>/g," ")
-                //screw it!!!
-                }
-                <p>Distance: {program.distance} miles</p>
+                 <div className="container">
+                    <div className="one">
+                      <Map coords={program.offices[0].location} name={program.name} />
+                    </div>
+                    <div className="two">
+                      <h1>{program.name}</h1>
+                      {program.description.replace(/\<br\>|\<br\/\>/g," ")
+          //screw it!!!
+                      }
+                      <p>Distance: {program.distance} miles</p>
 
-                <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
+                      <a href={program.website_url}>{program.website_url}</a>
 
-                <a href={program.website_url}>{program.website_url}</a>
+                      <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
 
-                <Map coords={program.offices[0].location} name={program.name} />
+                    </div>
+                    <div className="three"></div>
+
+
+
+
+              </div>
+
+
               </div>
             )
           })
@@ -84,15 +97,18 @@ const DisplayResults = React.createClass({
                 Rating: {"*".repeat(review.rating)}
 
                 <p>review.comment</p>
-                
+
               </div>
 
             )
           })
-        }	
+        }
       </div>
   	)
   }
 });
+
+
+
 
 export default DisplayResults;

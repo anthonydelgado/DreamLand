@@ -30,7 +30,6 @@ ReactDOM.render(
       <Route path='/search' component={DisplayResults}></Route>
       <Route path='/register' component={Registration}></Route>
       <Route path='/login' component={Login}></Route>
-
     </Route>
   </Router>,
   document.getElementById('root')

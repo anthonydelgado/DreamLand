@@ -15,8 +15,8 @@ const Map = React.createClass({
     let name = this.props.name
     return (
       <Gmaps
-        width={'200px'}
-        height={'200px'}
+        width={'100px'}
+        height={'100px'}
         lat={coords.latitude}
         lng={coords.longitude}
         zoom={12}
