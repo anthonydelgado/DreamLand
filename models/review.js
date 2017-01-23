@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     comment: {
       type: DataTypes.STRING,
-      max: 700
+      len: [5, 700]
     }
   }, {
     classMethods: {
