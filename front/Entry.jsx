@@ -84,6 +84,9 @@ const App = React.createClass ({
 	)
 	}
 })
+<<<<<<< HEAD
+>>>>>>> 953766e9d3863439b584e0d5df7753f354e6d091
+=======
 >>>>>>> 953766e9d3863439b584e0d5df7753f354e6d091
 
     </Route>
