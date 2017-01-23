@@ -58,23 +58,34 @@ body {
 input {
   border: 1px solid;
   border-radius: 25px;
+  width: 15%;
 }
 
 ::-webkit-input-placeholder{
-  color: pink;
-  font-size: 10px;
+  color: black;
+  font-size: 20px;
+  padding-right: 10%;
 }
 
 .input[type=text] {
     width: 200px;
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
-    
-    
 }
 
 
 input[type=text]:focus {
     width: 50%;
     font-size: 50px;
+    outline: none;
+}
+
+#check {
+  width: 10px;
+  color: white;
+}
+
+#radios {
+  color: white;
+  width: 14%;
 }
