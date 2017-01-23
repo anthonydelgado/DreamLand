@@ -26,12 +26,18 @@ const SearchBar = React.createClass({
 		let imgStyle={width: 50, height: 50}
 		return(
 			<div>
+			<div id="search">
 				<input onChange={this.handleChange} type="text" name="zipcode" placeholder="Zip Code here..."></input> 
-				<input onChange={this.handleChange} type="checkbox" name="age" value="young+adult" /> Young Adult
-				<input onChange={this.handleChange} type="checkbox" name="status" value="undocumented" /> Undocumented
-				<input onChange={this.handleChange} type="checkbox" name="attr" value="lgbtq" />LGBTQ
+				
 				<img onClick={this.makeQuery} src={require('../images/search-icon.png')} alt="search-icon" style={imgStyle} />
 			</div>
+			<div>
+			 <input onChange={this.handleChange} type="checkbox" name="age" value="young+adult" /> Young Adult
+				<input onChange={this.handleChange} type="checkbox" name="status" value="undocumented" /> Undocumented
+				<input onChange={this.handleChange} type="checkbox" name="attr" value="lgbtq" />LGBTQ
+			
+			</div>
+	      </div>
 		)
 	}
 });

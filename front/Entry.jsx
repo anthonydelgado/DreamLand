@@ -10,7 +10,6 @@ import DisplayResults from './Search/DisplayResults.jsx'
 import Registration from './register.jsx'
 import Login from './login.jsx'
 
-
 //Styling
 import './CSS/App.css';
 import './CSS/navbar.css'
@@ -33,7 +32,6 @@ ReactDOM.render(
       <Route path='/search' component={DisplayResults}></Route>
       <Route path='/register' component={Registration}></Route>
       <Route path='/login' component={Login}></Route>
-
     </Route>
   </Router>,
   document.getElementById('root')
