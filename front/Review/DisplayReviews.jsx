@@ -13,17 +13,19 @@ const DisplayReviews = React.createClass({
 	    	.then( (res) => {
 	       reviews.push(res.data);
 	     	})
-	     	.then( () => {
-				  this.setState({reviews: reviews})
-	     	})
 				.catch( (err) => {
 					console.log(err);
 				});
 		})
+		.then( () => {
+			console.log("WOOOOOOOOOOOOOOOOOOOOOOOOO")
+			this.setState({reviews: reviews})
+	  })
 	},
 
 	render(){
-		console.log(this.props.provIds)
+		console.log("PROPS ====>",this.props.provIds)
+		console.log("STATE ====>",this.state)
 		return (
 			<div>
 				Hello from reviews!

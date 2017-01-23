@@ -19,6 +19,9 @@ const Home = withRouter(React.createClass({
              </div>
        </div>
         
+   <i class="fa fa-heart-o" aria-hidden="false"></i> <i class="fa fa-heart" aria-hidden="true"></i>
+
+
     </div>
     )
   }

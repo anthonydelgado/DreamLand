@@ -23,7 +23,7 @@ const DisplayResults = React.createClass({
       queries += (query[key] + ',');
     };
   };
-  !queries ? queries = "legal" : null;
+  !queries ? queries = "legal,education" : null;
 
  	let url = 'https://c4q-dot-searchbertha-hrd.appspot.com/_ah/api/search/v1/zipcodes/';
 	let zipcode = query.zipcode;
@@ -48,6 +48,10 @@ const DisplayResults = React.createClass({
     });
   },
 
+  fav(event){
+
+  },
+
   refresh(){
     window.location.reload();
   },
@@ -55,7 +59,6 @@ const DisplayResults = React.createClass({
   render(){
     let programs = this.state.programs
     let provIds = this.state.provIds
-    console.log("OUR STATE =====>", this.state)
     return (
       <div>
         <SearchBar refresh={this.refresh}/>
@@ -82,6 +85,7 @@ const DisplayResults = React.createClass({
                     <div className="three"></div>
 
 
+             <i onClick={this.fav} name="wHeart" className="fa fa-heart-o" aria-hidden="false"></i> <i onClick={this.fav} name="bHeart" className="fa fa-heart" aria-hidden="true" hidden></i>
 
 
               </div>

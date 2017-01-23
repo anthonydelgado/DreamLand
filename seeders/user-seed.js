@@ -4,45 +4,21 @@ const User = require('../models').User;
 User.sync({ force:true })//force:true will clear our database of information
 	.then( () => {
 		User.bulkCreate([{
-	  username: "wlarson0",
+	  username: "gabe",
 	  email: "bmendoza0@vistaprint.com",
-	  password: "zinZjNtOwjeL"
+	  password: "gabesux"
 		}, {
-	  username: "jrobinson1",
+	  username: "jBenitez1",
 	  email: "wford1@i2i.jp",
-	  password: "eIKMf2B2"
+	  password: "trumpsux"
 		}, {
-	  username: "tharper2",
-	  email: "rmorgan2@friendfeed.com",
-	  password: "XSCVtd"
+	  username: "valerio",
+	  email: "val@gmail.com",
+	  password: "aguacate"
 		}, {
-	  username: "atucker3",
+	  username: "montoya",
 	  email: "pchapman3@netlog.com",
-	  password: "RyIkEaW3sivs"
-		}, {
-	  username: "dhernandez4",
-	  email: "rbaker4@godaddy.com",
-	  password: "I3JrYmCJu"
-		}, {
-	  username: "gshaw5",
-	  email: "rbradley5@nba.com",
-	  password: "jk2eiPnqggAa"
-		}, {
-	  username: "emccoy6",
-	  email: "kedwards6@github.io",
-	  password: "AiWWtKzBINb"
-		}, {
-	  username: "greid7",
-	  email: "kjohnson7@uiuc.edu",
-	  password: "zkUHbZnn"
-		}, {
-	  username: "rramirez8",
-	  email: "bperkins8@ibm.com",
-	  password: "qQhiBQ0ae"
-		}, {
-	  username: "dsims9",
-	  email: "aday9@hatena.ne.jp",
-	  password: "rBegzab"
+	  password: "plsno"
 		}])
 	})
 	.catch( (err) => {

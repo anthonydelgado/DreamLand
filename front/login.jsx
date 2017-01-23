@@ -1,5 +1,6 @@
 import React from 'react';
-import $ from 'jquery';
+import axios from 'axios';
+// import $ from 'jquery';
 
 const Login = React.createClass({
 	getInitialState(){
@@ -7,22 +8,29 @@ const Login = React.createClass({
 	},
 	submitLogIn(e){
 		e.preventDefault()
-		console.log("submitLogIn??????????")
-		$.ajax({
-			method: "GET",
-			url: 'api/users/validate/',  
-			data: this.state
-		})
-		.done((data)=>{
-			//   console.log(data)
-			$.ajax({
-			  url: '/api/users/validate/userid', 
-			  method:'GET'
+		axios.post('/api/users/login/', this.state)
+			.then( (res) => {
+				console.log(res)
+				this.props.router.push('/');
 			})
-			.done(()=>{
-			  this.props.router.push('/')
+			.catch( (err) => {
+				console.log(err)
 			})
-		})		
+		// $.ajax({
+		// 	method: "GET",
+		// 	url: '/api/users/login/',  
+		// 	data: this.state
+		// })
+		// .done((data)=>{
+		// 	//   console.log(data)
+		// 	$.ajax({
+		// 	  url: '/api/users/validate/userid', 
+		// 	  method:'GET'
+		// 	})
+		// 	.done(()=>{
+		// 	  this.props.router.push('/')
+		// 	})
+		// })		
 
 	},
 	handleChange(key, e){
@@ -40,6 +48,7 @@ const Login = React.createClass({
 		        	<input onChange={this.handleChange.bind(this, "password")} type="text"/>
 		        	<button onClick={this.submitLogIn}>Submit</button>
 		        </form>
+
 	      </div>
 		);
 	}
