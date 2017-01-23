@@ -10,17 +10,26 @@ const Login = React.createClass({
 		console.log("submitLogIn??????????")
 		$.ajax({
 			method: "GET",
-			url: 'api/users/validate',  
+			url: 'api/users/validate/',  
 			data: this.state
-			}).done((data)=>{
-			  console.log(data)
+		})
+		.done((data)=>{
+			//   console.log(data)
+			$.ajax({
+			  url: '/api/users/validate/userid', 
+			  method:'GET'
 			})
+			.done(()=>{
+			  this.props.router.push('/')
+			})
+		})		
 
 	},
 	handleChange(key, e){
 		this.setState({[key]: e.target.value})
 	},
- 	render: function() {
+ 	render() {
+ 		console.log(this.props)
 	    return (
 	      <div>
 	      

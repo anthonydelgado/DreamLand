@@ -66,19 +66,17 @@ const createNewUser = (req, res) => {
 const authenticateUser = (req, res) => {
   console.log("authenticateUser!!", req.body)
   console.log("authenticateUser!!", req.query);
-  const { username, password} = req.query
+  const {userInfo} = req.query
 
   User.findOne({
-    where: {
-      username,
-      password
-    }
+    where: userInfo
   })
   .then((user) => {
   	console.log('user==========>',user)
     if(user){
       req.session.userID = user.id;
       req.session.save();
+      console.log("SESSION =====>", req.session)
       res.send(req.session.userID);
     } else {
       res.sendStatus(403)
@@ -100,10 +98,6 @@ const isAuthenticated = (req, res) => {
   }else {
     res.send(false);
   }
-}
-const logingin = (req, res) => {
-  req.session()
-  req.redirect('/')
 }
 
 
@@ -149,6 +143,7 @@ function userLogin(req,res){
 //   .get(auth)
 userRouter.route('/validate')
   .get(authenticateUser)
+
 userRouter.route('/validate/userid')
   .get(isAuthenticated)
 
