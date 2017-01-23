@@ -24,11 +24,18 @@ module: {
       {
         test: /\.(ico|jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file'
-      }
+      },
+      {
+      test: /\.html$/,
+      loader: 'html-loader?attrs[]=video:src'
+    }, {
+      test: /\.mp4$/,
+      loader: 'url?limit=10000&mimetype=video/mp4'
+  }
     ]
   },
   devtool: 'source-maps',
   resolve: {
-    extensions: ["", ".js", ".jsx"]
+    extensions: ["", ".js", ".jsx",".css"]
   }
 };

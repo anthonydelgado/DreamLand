@@ -63,17 +63,30 @@ const DisplayResults = React.createClass({
           programs.map( (program, idx) => {
             return (
               <div key={idx}>
-                <h1>{program.name}</h1>
-                {program.description.replace(/\<br\>|\<br\/\>/g," ")
-                //screw it!!!
-                }
-                <p>Distance: {program.distance} miles</p>
+                 <div className="container">
+                    <div className="one">
+                      <Map coords={program.offices[0].location} name={program.name} />
+                    </div>
+                    <div className="two">
+                      <h1>{program.name}</h1>
+                      {program.description.replace(/\<br\>|\<br\/\>/g," ")
+          //screw it!!!
+                      }
+                      <p>Distance: {program.distance} miles</p>
 
-                <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
+                      <a href={program.website_url}>{program.website_url}</a>
 
-                <a href={program.website_url}>{program.website_url}</a>
+                      <p>{program.offices[0].address1} {program.offices[0].postal} {program.offices[0].city},{program.offices[0].state}</p>
 
-                <Map coords={program.offices[0].location} name={program.name} />
+                    </div>
+                    <div className="three"></div>
+
+
+
+
+              </div>
+
+
               </div>
             )
           })
@@ -85,5 +98,8 @@ const DisplayResults = React.createClass({
   	)
   }
 });
+
+
+
 
 export default DisplayResults;
