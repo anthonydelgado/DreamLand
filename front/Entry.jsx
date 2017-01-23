@@ -12,10 +12,12 @@ import Login from './login.jsx'
 
 //Styling
 import './CSS/App.css';
+import './CSS/navbar.css'
 
 const App = (props) => {
   return (
     <div>
+      
       {props.children}
     </div>
   )

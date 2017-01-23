@@ -1,7 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import SearchBar from './Search/SearchBar.jsx';
-import Jquery from 'jquery';
+import NavBar from './nav/navigation'
 
 //import Calendar from './Calendar/Calendar.jsx'
 //<Calendar />
@@ -25,6 +25,3 @@ const Home = withRouter(React.createClass({
 }));
 
 export default Home;
-
-
-   
