@@ -4,6 +4,7 @@ import {withRouter,Link} from 'react-router';
 import SearchBar from './Search/SearchBar.jsx';
 import Home from './home.jsx'
 import Register from './register.jsx';
+import axios from 'axios';
 
 const Login = React.createClass({
 	getInitialState(){
@@ -11,20 +12,22 @@ const Login = React.createClass({
 	},
 	submitLogIn(e){
 		e.preventDefault()
-		console.log("submitLogIn??????????")
-		$.ajax({
-			method: "GET",
-			url: 'api/users/validate',  
-			data: this.state
-			}).done((data)=>{
-			  console.log(data)
+		axios.post('/api/users/login/', this.state)
+			.then( (res) => {
+				console.log(res)
+				this.props.router.push('/');
 			})
+			.catch( (err) => {
+				console.log(err)
+			})
+
 
 	},
 	handleChange(key, e){
 		this.setState({[key]: e.target.value})
 	},
- 	render: function() {
+ 	render() {
+ 		console.log(this.props)
 	    return (
 	      <div>
                <div className="background">
@@ -42,11 +45,6 @@ const Login = React.createClass({
 		        	<input id="login" onChange={this.handleChange.bind(this, "password")} type="text"/>
 		        	<button id ="subButton" onClick={this.submitLogIn}>Sign In</button>
 		        </form>
-			 </center>
-             </div>
-		  </div>
-		  
-	      </div>
 		);
 	}
 });

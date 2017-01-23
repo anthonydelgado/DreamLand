@@ -46,75 +46,79 @@ const createNewUser = (req, res) => {
 		});
 };
 
-// const fetchUser = (req, res) => {
-// 	if (!req.session.UserId) return res.sendStatus(401);
-// 	User.findById(req.session.UserId, {
-// 		include: [{all: true}]
-// 	})
-// 	.then( (user) => {
-// 		res.send(user);
-// 	})
-// 	.catch( (err) => {
-// 		console.log("Problem returning logged in user info: ", err);
-// 		res.sendStatus(500);
-// 	})
-// }
+
+const authUser = (req,res) => {
+   if(req.session.UserId) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(401);
+  }
+
+}
+
+const fetchUser = (req, res) => {
+	if (!req.session.UserId) return res.sendStatus(401);
+	User.findById(req.session.UserId, {
+		include: [{all: true}]
+	})
+	.then( (user) => {
+		res.send(user);
+	})
+	.catch( (err) => {
+		console.log("Problem returning logged in user info: ", err);
+		res.sendStatus(500);
+	})
+}
 
 //validates a user
 //user needs email + password
 
-const authenticateUser = (req, res) => {
-  console.log("authenticateUser!!", req.body)
-  console.log("authenticateUser!!", req.query);
-  const { username, password} = req.query
+// const authenticateUser = (req, res) => {
+//   console.log("authenticateUser!!", req.body)
+//   console.log("authenticateUser!!", req.query);
+//   const {userInfo} = req.query
 
-  User.findOne({
-    where: {
-      username,
-      password
-    }
-  })
-  .then((user) => {
-  	console.log('user==========>',user)
-    if(user){
-      req.session.userID = user.id;
-      req.session.save();
-      res.send(req.session.userID);
-    } else {
-      res.sendStatus(403)
-    }
-  })
-  .catch((err) => {
-  	console.log('errr======>', err)
-    res.sendStatus(500)
-  })
-}
+//   User.findOne({
+//     where: userInfo
+//   })
+//   .then((user) => {
+//   	console.log('user==========>',user)
+//     if(user){
+//       req.session.userID = user.id;
+//       req.session.save();
+//       console.log("SESSION =====>", req.session)
+//       res.send(req.session.userID);
+//     } else {
+//       res.sendStatus(403)
+//     }
+//   })
+//   .catch((err) => {
+//   	console.log('errr======>', err)
+//     res.sendStatus(500)
+//   })
+// }
 //if the user already exist, it will be deredected
-const isAuthenticated = (req, res) => {
-  console.log(req.session)
-  if(req.session.userID){
-    User.findById(req.session.userID)
-    .then((data) => {
-      res.send(data)
-    })
-  }else {
-    res.send(false);
-  }
-}
-const logingin = (req, res) => {
-  req.session()
-  req.redirect('/')
-}
+// const isAuthenticated = (req, res) => {
+//   console.log(req.session)
+//   if(req.session.userID){
+//     User.findById(req.session.userID)
+//     .then((data) => {
+//       res.send(data)
+//     })
+//   }else {
+//     res.send(false);
+//   }
+// }
 
 
 //handles the initial log in.
-function userLogin(req,res){
+const userLogin = (req,res) =>{
   var userInfo = req.body;
   User.sync()
   .then(() => {
     return User.findOne({
       where: {
-        email: userInfo.email,
+        username: userInfo.username,
         password: userInfo.password
       }
     })
@@ -123,10 +127,10 @@ function userLogin(req,res){
     if(user) {
       req.session.UserId = user.id;
       req.session.save();
-      console.log('Updated session?', req.session);
+      console.log('session: ', req.session);
       res.send(user);
     } else {
-      res.send('Incorrect password!');
+      res.send('Incorrect password!').status(403);
     }
   })
   .catch((err) => {
@@ -147,23 +151,28 @@ function userLogin(req,res){
 
 // router.route('/')
 //   .get(auth)
-userRouter.route('/validate')
-  .get(authenticateUser)
-userRouter.route('/validate/userid')
-  .get(isAuthenticated)
+
+// userRouter.route('/validate/userid')
+//   .get(isAuthenticated)
 
 
 
 //  ROUTES
 userRouter.route('/')
-	.post(createNewUser)
+  .post(createNewUser)
+
+userRouter.route('/login')
+  .post(userLogin)
 
 userRouter.route('/userId/:id')
-	.get(getUserById)
-	.delete(deleteUser)
+  .get(getUserById)
+  .delete(deleteUser)
 
-// userRouter.route('/userprofile')
-// 	.get(fetchUser)
+userRouter.route('/validate')
+  .get(authUser)
+
+userRouter.route('/userprofile')
+ .get(fetchUser)
 
 
 

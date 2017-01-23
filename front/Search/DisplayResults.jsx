@@ -5,11 +5,12 @@ import axios from 'axios';
 //Component
 import SearchBar from './SearchBar.jsx';
 import Map from '../Map/Map.jsx';
+import DisplayReviews from '../Review/DisplayReviews.jsx';
 
 const DisplayResults = React.createClass({
   getInitialState(){
-  	return{programs: null, reviews: null, location: null}
-  },
+  	return{programs: null, provIds: null}
+  }, 
 
   componentDidMount(){
   let age = 'adult';
@@ -22,7 +23,7 @@ const DisplayResults = React.createClass({
       queries += (query[key] + ',');
     };
   };
-  !queries ? queries = "legal" : null;
+  !queries ? queries = "legal,education" : null;
 
  	let url = 'https://c4q-dot-searchbertha-hrd.appspot.com/_ah/api/search/v1/zipcodes/';
 	let zipcode = query.zipcode;
@@ -31,18 +32,18 @@ const DisplayResults = React.createClass({
   console.log(url + zipcode + attributes)
   axios.get(url + zipcode + attributes)
     .then( (res) => {
-      let reviews = [];
-      let idArr = res.data.programs.map( (program) => program.id);
-      idArr.forEach( (id) => {
-        axios.get(`/review/${id}`)
-          .then( (res) => reviews.concat(res.data) );
-      });
       console.log("this is res.data.programs===========>",res.data)
-      this.setState({programs: res.data.programs, reviews: reviews, location: res.data.postal_location});
+
+      let idArr = res.data.programs.map( (program) => program.id);
+      this.setState({programs: res.data.programs, provIds: idArr});
     })
     .catch( (err) => {
       console.log(err);
     });
+  },
+
+  fav(event){
+
   },
 
   refresh(){
@@ -51,14 +52,11 @@ const DisplayResults = React.createClass({
 
   render(){
     let programs = this.state.programs
-    let reviews = this.state.reviews
-    console.log(this.props)
-  	return (
-  		<div>
-      <center>
-  			<SearchBar refresh={this.refresh}/>
-      </center>
-        {!programs ? <img src={require('../images/loading_icon.gif')}></img> :
+    let provIds = this.state.provIds
+    return (
+      <div>
+        <SearchBar refresh={this.refresh}/>
+        {!programs ? <img src={require('../images/loading_icon.gif')}></img> : 
           programs.map( (program, idx) => {
             return (
               <div key={idx}>
@@ -84,6 +82,7 @@ const DisplayResults = React.createClass({
                     </div>
 
 
+             <i onClick={this.fav} name="wHeart" className="fa fa-heart-o" aria-hidden="false"></i> <i onClick={this.fav} name="bHeart" className="fa fa-heart" aria-hidden="true" hidden></i>
 
 
               </div>
@@ -93,21 +92,9 @@ const DisplayResults = React.createClass({
             )
           })
         }
-        {!reviews ? null :
-          reviews.map( (review, idx) => {
-            return (
-
-              <div key={idx}>
-
-                Rating: {"*".repeat(review.rating)}
-
-                <p>review.comment</p>
-
-              </div>
-
-            )
-          })
-        }
+        {!provIds ? null :
+          <DisplayReviews provIds={provIds}/>
+        }	
       </div>
   	)
   }

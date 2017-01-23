@@ -6,6 +6,7 @@ div {
   color: white;
 	font-size: 88px;
   z-index: 50;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #search {
@@ -25,7 +26,7 @@ div {
   margin-left: -4px;
   width: 33%;
   height: 100%;
-  /*border: 1px solid blue;*/
+  border: 1px solid blue;
 }
 
 .container div:first-child {
