@@ -16,21 +16,7 @@ const Login = React.createClass({
 			.catch( (err) => {
 				console.log(err)
 			})
-		// $.ajax({
-		// 	method: "GET",
-		// 	url: '/api/users/login/',  
-		// 	data: this.state
-		// })
-		// .done((data)=>{
-		// 	//   console.log(data)
-		// 	$.ajax({
-		// 	  url: '/api/users/validate/userid', 
-		// 	  method:'GET'
-		// 	})
-		// 	.done(()=>{
-		// 	  this.props.router.push('/')
-		// 	})
-		// })		
+
 
 	},
 	handleChange(key, e){

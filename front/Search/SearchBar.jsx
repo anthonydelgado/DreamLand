@@ -31,10 +31,10 @@ const SearchBar = React.createClass({
 				
 				<img onClick={this.makeQuery} src={require('../images/search-icon.png')} alt="search-icon" style={imgStyle} />
 			</div>
-			<div>
-			 <input onChange={this.handleChange} type="checkbox" name="age" value="young+adult" /> Young Adult
-				<input onChange={this.handleChange} type="checkbox" name="status" value="undocumented" /> Undocumented
-				<input onChange={this.handleChange} type="checkbox" name="attr" value="lgbtq" />LGBTQ
+			<div id="radios">
+			 <input id="check" onChange={this.handleChange} type="checkbox" name="age" value="young+adult" /> Young Adult
+				<input id="check" onChange={this.handleChange} type="checkbox" name="status" value="undocumented" /> Undocumented
+				<input id="check"onChange={this.handleChange} type="checkbox" name="attr" value="lgbtq" />LGBTQ
 			
 			</div>
 	      </div>
