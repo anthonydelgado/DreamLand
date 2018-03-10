@@ -1,6 +1,9 @@
 {
   "name": "dream-land",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.11.1"
+  },
   "description": "An app for helping dreamers",
   "main": "Entry.jsx",
   "scripts": {
